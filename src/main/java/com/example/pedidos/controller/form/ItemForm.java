@@ -7,7 +7,8 @@ import javax.validation.constraints.Positive;
 import org.hibernate.validator.constraints.Length;
 
 import com.example.pedidos.model.Item;
-import com.example.pedidos.repository.ItemRepository;
+import com.example.pedidos.model.Pedido;
+import com.example.pedidos.repository.PedidoRepository;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -24,9 +25,12 @@ public class ItemForm {
 	private Integer quantidade;
 	@Positive(message = "O custo precisa ser um valor positivo")
 	private Double custo;
+	@NotBlank(message = "Nome do pedido não pode estar em branco")
+	private String nomePedido;
 
-	public Item converter() {
-		Item item = new Item(nome, descricao, quantidade, custo);
+	public Item converter(PedidoRepository pedidoRep) {
+		Pedido pedido = pedidoRep.findByNome(nomePedido);
+		Item item = new Item(nome, descricao, quantidade, custo, pedido);
 		return item;
 	}
 

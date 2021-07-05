@@ -25,12 +25,16 @@ import com.example.pedidos.controller.form.ItemAtualizacaoForm;
 import com.example.pedidos.controller.form.ItemForm;
 import com.example.pedidos.model.Item;
 import com.example.pedidos.repository.ItemRepository;
+import com.example.pedidos.repository.PedidoRepository;
 
 @RestController
 @RequestMapping("/itens")
 public class ItemController {
 	@Autowired
 	private ItemRepository itemRep;
+
+	@Autowired
+	private PedidoRepository pedidoRep;
 
 	@GetMapping
 	public List<ItemDto> lista() {
@@ -50,7 +54,7 @@ public class ItemController {
 	@Transactional
 	@PostMapping
 	public ResponseEntity<ItemDto> insere(@RequestBody @Valid ItemForm form, UriComponentsBuilder uriBuilder) {
-		Item item = form.converter();
+		Item item = form.converter(pedidoRep);
 		itemRep.save(item);
 		URI uri = uriBuilder.path("/itens/{id}").buildAndExpand(item.getId()).toUri();
 		return ResponseEntity.created(uri).body(new ItemDto(item));

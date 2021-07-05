@@ -11,6 +11,9 @@ public class ItemDetalhadoDto {
 	private String descricao;
 	private Integer quantidade;
 	private Double custo;
+	private Long idPedido;
+	private String nomePedido;
+	private String descricaoPedido;
 
 	public ItemDetalhadoDto(Item item) {
 		this.id = item.getId();
@@ -18,6 +21,9 @@ public class ItemDetalhadoDto {
 		this.descricao = item.getDescricao();
 		this.quantidade = item.getQuantidade();
 		this.custo = item.getCusto();
+		this.idPedido = item.getPedido().getId();
+		this.nomePedido = item.getPedido().getNome();
+		this.descricaoPedido = item.getPedido().getDescricao();
 	}
 
 }
