@@ -27,13 +27,11 @@ public class Pedido {
 	private String nome;
 	private String descricao;
 	private LocalDate data;
-	private Double custoTotal;
 
 	public Pedido(String nome, String descricao, LocalDate data) {
 		this.nome = nome;
 		this.descricao = descricao;
 		this.data = data;
-		this.custoTotal = Double.valueOf(0.0);
 	}
 
 	@OneToMany(mappedBy = "pedido")

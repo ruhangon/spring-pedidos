@@ -8,6 +8,7 @@ import javax.validation.constraints.PastOrPresent;
 import org.hibernate.validator.constraints.Length;
 
 import com.example.pedidos.model.Pedido;
+import com.example.pedidos.repository.PedidoRepository;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +26,14 @@ public class PedidoForm {
 
 	public Pedido converter() {
 		Pedido pedido = new Pedido(nome, descricao, data);
+		return pedido;
+	}
+
+	public Pedido atualiza(Long id, PedidoRepository pedidoRep) {
+		Pedido pedido = pedidoRep.getOne(id);
+		pedido.setNome(this.nome);
+		pedido.setDescricao(this.descricao);
+		pedido.setData(this.data);
 		return pedido;
 	}
 

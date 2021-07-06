@@ -14,14 +14,12 @@ public class PedidoDto {
 	private String nome;
 	private String descricao;
 	private LocalDate data;
-	private Double custoTotal;
 
 	public PedidoDto(Pedido pedido) {
 		this.id = pedido.getId();
 		this.nome = pedido.getNome();
 		this.descricao = pedido.getDescricao();
 		this.data = pedido.getData();
-		this.custoTotal = pedido.getCustoTotal();
 	}
 
 	public static List<PedidoDto> converter(List<Pedido> pedidos) {
