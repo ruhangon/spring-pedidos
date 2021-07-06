@@ -13,12 +13,14 @@ public class PedidoDto {
 	private Long id;
 	private String nome;
 	private String descricao;
+	private String marca;
 	private LocalDate data;
 
 	public PedidoDto(Pedido pedido) {
 		this.id = pedido.getId();
 		this.nome = pedido.getNome();
 		this.descricao = pedido.getDescricao();
+		this.marca = pedido.getMarca();
 		this.data = pedido.getData();
 	}
 

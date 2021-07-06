@@ -26,11 +26,13 @@ public class Pedido {
 	private Long id;
 	private String nome;
 	private String descricao;
+	private String marca;
 	private LocalDate data;
 
-	public Pedido(String nome, String descricao, LocalDate data) {
+	public Pedido(String nome, String descricao, String marca, LocalDate data) {
 		this.nome = nome;
 		this.descricao = descricao;
+		this.marca = marca;
 		this.data = data;
 	}
 

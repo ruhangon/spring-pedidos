@@ -21,11 +21,14 @@ public class PedidoForm {
 	private String nome;
 	@Length(max = 500, message = "A descrição precisa ter no máximo {max} caracteres")
 	private String descricao;
+	@NotBlank(message = "Marca não pode estar em branco")
+	@Length(min = 1, max = 30, message = "A marca precisa ter entre {min} e {max} caracteres")
+	private String marca;
 	@PastOrPresent(message = "A data não pode estar no futuro")
 	private LocalDate data;
 
 	public Pedido converter() {
-		Pedido pedido = new Pedido(nome, descricao, data);
+		Pedido pedido = new Pedido(nome, descricao, marca, data);
 		return pedido;
 	}
 
@@ -33,6 +36,7 @@ public class PedidoForm {
 		Pedido pedido = pedidoRep.getOne(id);
 		pedido.setNome(this.nome);
 		pedido.setDescricao(this.descricao);
+		pedido.setMarca(this.marca);
 		pedido.setData(this.data);
 		return pedido;
 	}
