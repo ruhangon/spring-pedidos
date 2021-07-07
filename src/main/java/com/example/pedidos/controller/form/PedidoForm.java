@@ -3,6 +3,7 @@ package com.example.pedidos.controller.form;
 import java.time.LocalDate;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 
 import org.hibernate.validator.constraints.Length;
@@ -19,11 +20,13 @@ public class PedidoForm {
 	@NotBlank(message = "Nome não pode estar em branco")
 	@Length(min = 1, max = 100, message = "O nome precisa ter entre {min} e {max} caracteres")
 	private String nome;
+	@NotNull(message = "A descrição não pode ser nula")
 	@Length(max = 500, message = "A descrição precisa ter no máximo {max} caracteres")
 	private String descricao;
 	@NotBlank(message = "Marca não pode estar em branco")
 	@Length(min = 1, max = 30, message = "A marca precisa ter entre {min} e {max} caracteres")
 	private String marca;
+	@NotNull(message = "A data não pode ser nula")
 	@PastOrPresent(message = "A data não pode estar no futuro")
 	private LocalDate data;
 
